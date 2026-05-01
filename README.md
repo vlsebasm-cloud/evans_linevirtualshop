@@ -1,1 +1,0 @@
-# evans_linevirtualshop

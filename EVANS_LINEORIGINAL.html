@@ -1,0 +1,1585 @@
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evans_Line — Moda &amp; Estilo</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #faf8f5;
+    --gold: #c9a84c;
+    --gold-light: #e8d08a;
+    --cream: #f2ede4;
+    --dark-gray: #1c1c1c;
+    --mid-gray: #5a5a5a;
+    --border: #d4c9b0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── CURSOR ─── */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.15s ease;
+    mix-blend-mode: multiply;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: rgba(250, 248, 245, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid-gray);
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--black); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  .nav-icons { display: flex; gap: 1.4rem; align-items: center; }
+
+  .nav-icons button {
+    background: none; border: none; cursor: pointer;
+    color: var(--mid-gray); font-size: 1.1rem;
+    transition: color 0.3s; padding: 0;
+  }
+
+  .nav-icons button:hover { color: var(--gold); }
+
+  .cart-btn {
+    background: var(--gold) !important;
+    color: var(--white) !important;
+    padding: 0.5rem 1.2rem !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 500;
+    transition: background 0.3s !important;
+  }
+  .cart-btn:hover { background: var(--black) !important; }
+
+  /* ─── HERO ─── */
+  #hero {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 0;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--dark-gray);
+    display: flex; flex-direction: column;
+    justify-content: center; padding: 8rem 5rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute; top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 60%, rgba(201,168,76,0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .hero-tag::before {
+    content: ''; display: block;
+    width: 40px; height: 1px; background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.08;
+    color: var(--white);
+    margin-bottom: 2rem;
+  }
+
+  .hero-title em {
+    font-style: italic; color: var(--gold-light);
+  }
+
+  .hero-sub {
+    font-size: 0.78rem; letter-spacing: 0.08em; line-height: 1.9;
+    color: rgba(250,248,245,0.55); max-width: 360px;
+    margin-bottom: 3rem;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--white);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary:hover { color: var(--black); }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.9rem 2.2rem;
+    border: 1px solid var(--border);
+    color: var(--mid-gray);
+    text-decoration: none;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-right {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #e8e0d0 0%, #d4c9b0 100%);
+  }
+
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem;
+    background:
+      linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 50%),
+      repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(201,168,76,0.04) 30px, rgba(201,168,76,0.04) 31px);
+  }
+
+  .hero-visual-icon { font-size: 5rem; opacity: 0.4; }
+
+  .hero-visual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--mid-gray);
+    opacity: 0.6;
+  }
+
+  .hero-badge {
+    position: absolute; bottom: 3rem; right: 3rem;
+    width: 90px; height: 90px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.65rem; letter-spacing: 0.12em; text-align: center;
+    color: var(--gold); line-height: 1.5;
+    animation: rotateBadge 12s linear infinite;
+  }
+
+  @keyframes rotateBadge {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ─── CATEGORY STRIP ─── */
+  .categories-strip {
+    display: flex;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cat-item {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.3s;
+    text-decoration: none;
+    display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+  }
+
+  .cat-item:last-child { border-right: none; }
+  .cat-item:hover { background: var(--cream); }
+
+  .cat-icon { font-size: 1.8rem; }
+
+  .cat-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid-gray); font-weight: 500;
+  }
+
+  .cat-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.75rem; color: var(--gold);
+  }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: ''; width: 30px; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.15;
+  }
+
+  .view-all {
+    font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--mid-gray); text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+  }
+
+  .view-all:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* ─── PRODUCTS GRID ─── */
+  section.products { padding: 6rem 4rem; }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .product-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    transition: transform 0.4s ease;
+  }
+
+  .product-card:hover { transform: translateY(-6px); }
+
+  .product-img {
+    aspect-ratio: 3/4;
+    background: var(--cream);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 0.5rem;
+  }
+
+  .product-emoji { font-size: 4rem; opacity: 0.5; transition: transform 0.4s; }
+  .product-card:hover .product-emoji { transform: scale(1.1); }
+
+  .product-category-tag {
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mid-gray);
+  }
+
+  .product-overlay {
+    position: absolute; inset: 0;
+    background: rgba(10,10,10,0.82);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem; opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-card:hover .product-overlay { opacity: 1; }
+
+  .overlay-btn {
+    padding: 0.7rem 1.8rem;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer; font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s;
+  }
+
+  .overlay-btn.primary {
+    background: var(--gold); color: var(--white); border: none;
+  }
+
+  .overlay-btn.secondary {
+    background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.4);
+  }
+
+  .overlay-btn:hover { opacity: 0.85; }
+
+  .product-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    background: var(--black); color: var(--white);
+    font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.7rem;
+  }
+
+  .product-badge.sale { background: #b84a4a; }
+  .product-badge.new { background: var(--gold); }
+
+  .product-info { padding: 1.2rem 0; }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+
+  .product-meta {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .product-price {
+    font-size: 0.9rem; font-weight: 500; color: var(--black);
+  }
+
+  .product-price .old {
+    font-size: 0.75rem; color: var(--mid-gray);
+    text-decoration: line-through; margin-right: 0.5rem;
+  }
+
+  .product-stars { color: var(--gold); font-size: 0.65rem; letter-spacing: 1px; }
+
+  /* ─── BANNER ─── */
+  .promo-banner {
+    margin: 0 4rem;
+    background: var(--dark-gray);
+    display: grid; grid-template-columns: 1fr 1fr;
+    overflow: hidden; position: relative;
+  }
+
+  .banner-content {
+    padding: 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 1;
+  }
+
+  .banner-content::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 0% 50%, rgba(201,168,76,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .banner-tag {
+    font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+
+  .banner-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300; color: var(--white); line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .banner-title em { font-style: italic; color: var(--gold-light); }
+
+  .banner-desc {
+    font-size: 0.78rem; color: rgba(250,248,245,0.55);
+    line-height: 1.9; max-width: 340px; margin-bottom: 2.5rem;
+  }
+
+  .banner-right {
+    background: linear-gradient(135deg, #2a2520 0%, #1a1510 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem; opacity: 0.4;
+    padding: 4rem;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  section.testimonials {
+    padding: 6rem 4rem;
+    background: var(--cream);
+  }
+
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+  }
+
+  .testimonial-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border: 1px solid var(--border);
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem; line-height: 1; color: var(--gold);
+    opacity: 0.2;
+    position: absolute; top: 0.5rem; left: 1.5rem;
+    pointer-events: none;
+  }
+
+  .testimonial-text {
+    font-size: 0.82rem; line-height: 1.9; color: var(--mid-gray);
+    margin-bottom: 1.5rem; font-style: italic;
+  }
+
+  .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+
+  .author-avatar {
+    width: 44px; height: 44px;
+    background: var(--gold); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; color: var(--white); font-weight: 600;
+  }
+
+  .author-name {
+    font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  .author-location {
+    font-size: 0.68rem; color: var(--mid-gray); letter-spacing: 0.05em;
+  }
+
+  /* ─── CONTACT ─── */
+  section#contacto {
+    padding: 6rem 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: start;
+  }
+
+  .contact-info-block {}
+
+  .contact-desc {
+    font-size: 0.82rem; line-height: 1.9; color: var(--mid-gray);
+    margin-bottom: 3rem; max-width: 380px;
+  }
+
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    width: 48px; height: 48px;
+    border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  .contact-label {
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.4rem;
+  }
+
+  .contact-value {
+    font-size: 0.85rem; color: var(--black);
+    font-family: 'Cormorant Garamond', serif; font-size: 1rem;
+  }
+
+  .social-links {
+    display: flex; gap: 1rem; margin-top: 2.5rem;
+  }
+
+  .social-btn {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--border);
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--mid-gray); text-decoration: none;
+    transition: all 0.3s;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FORM ─── */
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .form-label {
+    font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--mid-gray);
+  }
+
+  .form-input, .form-select, .form-textarea {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 0.9rem 1.2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem; color: var(--black);
+    transition: border-color 0.3s;
+    outline: none;
+    width: 100%;
+  }
+
+  .form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .form-textarea { resize: vertical; min-height: 120px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .form-submit {
+    padding: 1rem 2.5rem;
+    background: var(--black);
+    color: var(--white);
+    border: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 500;
+    transition: background 0.3s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark-gray);
+    color: var(--white);
+    padding: 5rem 4rem 2rem;
+  }
+
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem; margin-bottom: 4rem;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .footer-logo span { color: var(--gold); }
+
+  .footer-tagline {
+    font-size: 0.75rem; line-height: 1.8;
+    color: rgba(250,248,245,0.45); max-width: 260px;
+    margin-bottom: 2rem;
+  }
+
+  .footer-col h4 {
+    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .footer-col ul a {
+    font-size: 0.78rem; color: rgba(250,248,245,0.55);
+    text-decoration: none; transition: color 0.3s;
+  }
+
+  .footer-col ul a:hover { color: var(--white); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 0.68rem; color: rgba(250,248,245,0.35); letter-spacing: 0.05em;
+  }
+
+  .footer-payments { display: flex; gap: 0.8rem; }
+
+  .payment-badge {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(250,248,245,0.4);
+  }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: var(--white);
+    max-width: 500px; width: 90%;
+    padding: 3rem;
+    position: relative;
+    transform: translateY(30px);
+    transition: transform 0.3s;
+  }
+
+  .modal-overlay.active .modal { transform: translateY(0); }
+
+  .modal-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; font-size: 1.2rem;
+    cursor: pointer; color: var(--mid-gray);
+    transition: color 0.3s;
+  }
+
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-tag {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-price {
+    font-size: 1.1rem; font-weight: 500;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+
+  .modal-desc {
+    font-size: 0.78rem; line-height: 1.9; color: var(--mid-gray);
+    margin-bottom: 2rem;
+  }
+
+  .size-options { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+
+  .size-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: none; cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem; transition: all 0.3s;
+  }
+
+  .size-btn.active, .size-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  .modal-actions { display: flex; gap: 1rem; }
+
+  .modal-add {
+    flex: 1; padding: 0.9rem;
+    background: var(--gold); color: var(--white); border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+    cursor: pointer; font-weight: 500;
+    transition: background 0.3s;
+  }
+
+  .modal-add:hover { background: var(--black); }
+
+  .modal-wish {
+    padding: 0.9rem 1.2rem;
+    border: 1px solid var(--border);
+    background: none; cursor: pointer;
+    font-size: 1.1rem; color: var(--mid-gray);
+    transition: all 0.3s;
+  }
+
+  .modal-wish:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── CART PANEL ─── */
+  .cart-panel {
+    position: fixed; top: 0; right: -420px; bottom: 0;
+    width: 420px; background: var(--white); z-index: 1500;
+    transition: right 0.4s ease;
+    box-shadow: -4px 0 30px rgba(0,0,0,0.15);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+
+  .cart-panel.open { right: 0; }
+
+  .cart-header {
+    padding: 2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .cart-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 400;
+  }
+
+  .cart-body {
+    flex: 1; overflow-y: auto; padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 1.2rem;
+  }
+
+  .cart-empty {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 1rem; color: var(--mid-gray);
+    font-size: 0.8rem; letter-spacing: 0.1em;
+  }
+
+  .cart-empty-icon { font-size: 3rem; opacity: 0.3; }
+
+  .cart-item {
+    display: grid; grid-template-columns: 60px 1fr auto;
+    gap: 1rem; align-items: center;
+    padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+  }
+
+  .cart-item-img {
+    width: 60px; height: 75px;
+    background: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .cart-item-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+  }
+
+  .cart-item-price { font-size: 0.82rem; font-weight: 500; }
+  .cart-item-size { font-size: 0.68rem; color: var(--mid-gray); }
+
+  .cart-remove {
+    background: none; border: none; cursor: pointer;
+    color: var(--mid-gray); font-size: 0.9rem;
+    transition: color 0.3s; padding: 0;
+  }
+
+  .cart-remove:hover { color: #b84a4a; }
+
+  .cart-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .cart-total {
+    display: flex; justify-content: space-between;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; margin-bottom: 1.2rem;
+  }
+
+  .cart-checkout {
+    width: 100%; padding: 1rem;
+    background: var(--gold); color: var(--white); border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    cursor: pointer; font-weight: 500; transition: background 0.3s;
+  }
+
+  .cart-checkout:hover { background: var(--black); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--dark-gray); color: var(--white);
+    padding: 1rem 2rem;
+    font-size: 0.75rem; letter-spacing: 0.1em;
+    z-index: 3000; transition: transform 0.4s ease;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  .toast-check { color: var(--gold); }
+
+  /* ─── SCROLL FADE IN ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .whatsapp-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 56px; height: 56px;
+    background: #25D366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+  }
+
+  .whatsapp-float:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 2rem; }
+    .nav-links { display: none; }
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 8rem 2rem 4rem; }
+    section.products, section#contacto, section.testimonials { padding: 4rem 2rem; }
+    .promo-banner { margin: 0 2rem; grid-template-columns: 1fr; }
+    .banner-right { display: none; }
+    .banner-content { padding: 3rem; }
+    section#contacto { grid-template-columns: 1fr; gap: 3rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .categories-strip { flex-wrap: wrap; }
+    .cat-item { flex: 1 1 45%; }
+    .products-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+  }
+</style>
+<meta name="google-site-verification" content="bQyP2V75jsAyLXnUGhI3EOm8IP9siFO8l-yR0CaRqUk"></head>
+
+<body>
+
+<div class="cursor" id="cursor" style="left: 840px; top: 88px;"></div>
+
+<!-- NAVBAR -->
+<nav id="navbar" style="padding: 1.5rem 4rem;">
+  <a href="#" class="nav-logo">Evans<span>_</span>Line</a>
+  <ul class="nav-links">
+    <li><a href="#catalogo">Catálogo</a></li>
+    <li><a href="#colecciones">Colecciones</a></li>
+    <li><a href="#novedades">Novedades</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button title="Buscar">🔍</button>
+    <button title="Favoritos">🤍</button>
+    <button class="cart-btn" onclick="toggleCart()" title="Carrito">🛒 Carrito</button>
+  </div>
+</nav>
+<h2 class="sr-only">Evans_Line — Tienda virtual de moda con modo editor para agregar imágenes</h2>
+
+<!-- Editor bar (hidden by default) -->
+<div class="editor-bar" id="editor-bar" style="display:none;">
+  <div class="editor-bar-left">
+    <span class="editor-badge">MODO EDITOR</span>
+    <span class="editor-hint">Haz clic en cualquier producto para cambiar su imagen</span>
+  </div>
+  <button class="editor-exit" onclick="exitEditor()">Salir del editor</button>
+</div>
+
+
+
+<div id="v-catalogo" class="el-view active">
+  
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Nueva Colección 2025</div>
+    <h1 class="hero-title">
+      Estilo que<br>
+      <em>define</em><br>
+      tu esencia
+    </h1>
+    <p class="hero-sub">
+      Descubre nuestra exclusiva selección de moda, calzado, perfumería y accesorios. Cada pieza, una declaración de elegancia.
+    </p>
+    <div>
+      <a href="#catalogo" class="btn-primary"><span>Ver Catálogo</span></a>
+      <a href="#colecciones" class="btn-outline">Colecciones</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-placeholder">
+      <div class="hero-visual-icon">👗</div>
+      <div class="hero-visual-text">Evans_Line</div>
+    </div>
+    <div class="hero-badge">Nueva<br>Colección<br>★ 2025</div>
+  </div>
+</section>
+
+<!-- CATEGORIES STRIP -->
+<div class="categories-strip" id="colecciones">
+  <a class="cat-item" href="#catalogo" onclick="filterProducts('zapatos')">
+    <div class="cat-icon">👠</div>
+    <div class="cat-label">Zapatos</div>
+    <div class="cat-count">24 piezas</div>
+  </a>
+  <a class="cat-item" href="#catalogo" onclick="filterProducts('vestimenta')">
+    <div class="cat-icon">👗</div>
+    <div class="cat-label">Vestimenta</div>
+    <div class="cat-count">38 piezas</div>
+  </a>
+  <a class="cat-item" href="#catalogo" onclick="filterProducts('perfume')">
+    <div class="cat-icon">🌸</div>
+    <div class="cat-label">Perfumería</div>
+    <div class="cat-count">15 fragancias</div>
+  </a>
+  <a class="cat-item" href="#catalogo" onclick="filterProducts('accesorio')">
+    <div class="cat-icon">💍</div>
+    <div class="cat-label">Accesorios</div>
+    <div class="cat-count">29 piezas</div>
+  </a>
+</div>
+
+<!-- PRODUCTS SECTION -->
+<section class="products" id="catalogo">
+  <div class="section-header fade-in visible">
+    <div>
+      <div class="section-label">Catálogo</div>
+      <h2 class="section-title">Piezas Destacadas</h2>
+    </div>
+    <div style="display:flex;gap:0.8rem;align-items:center;">
+      <button onclick="filterProducts('all')" style="background:none;border:1px solid var(--border);padding:0.5rem 1rem;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;font-family:Montserrat;transition:all 0.3s;" id="filter-all" onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--gold)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='inherit'">Todos</button>
+      <a href="#" class="view-all">Ver todo →</a>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid">
+    <div class="product-card fade-in visible" style="animation-delay:0.18429063447055108s">
+      <div class="product-img">
+        <div class="product-emoji">👠</div>
+        <div class="product-category-tag">ZAPATOS</div>
+        <div class="product-badge new">Nuevo</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(1)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(1)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Tacones Dorados</div>
+        <div class="product-meta">
+          <div class="product-price">
+            
+            ₡45,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.06858061434178199s">
+      <div class="product-img">
+        <div class="product-emoji">👗</div>
+        <div class="product-category-tag">VESTIMENTA</div>
+        <div class="product-badge sale">Oferta</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(2)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(2)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Vestido Floral</div>
+        <div class="product-meta">
+          <div class="product-price">
+            <span class="old">₡52,000</span>
+            ₡38,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.12749898649890298s">
+      <div class="product-img">
+        <div class="product-emoji">🌹</div>
+        <div class="product-category-tag">PERFUME</div>
+        <div class="product-badge new">Nuevo</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(3)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(3)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Eau de Parfum Rose</div>
+        <div class="product-meta">
+          <div class="product-price">
+            
+            ₡28,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.09482584711730628s">
+      <div class="product-img">
+        <div class="product-emoji">📿</div>
+        <div class="product-category-tag">ACCESORIO</div>
+        <div class="product-badge sale">Oferta</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(4)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(4)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Collar de Perlas</div>
+        <div class="product-meta">
+          <div class="product-price">
+            <span class="old">₡25,000</span>
+            ₡18,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.15357115104538346s">
+      <div class="product-img">
+        <div class="product-emoji">👟</div>
+        <div class="product-category-tag">ZAPATOS</div>
+        
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(5)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(5)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Sneakers Blancas</div>
+        <div class="product-meta">
+          <div class="product-price">
+            
+            ₡55,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.2418115274823916s">
+      <div class="product-img">
+        <div class="product-emoji">👚</div>
+        <div class="product-category-tag">VESTIMENTA</div>
+        <div class="product-badge sale">Oferta</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(6)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(6)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Blusa de Seda</div>
+        <div class="product-meta">
+          <div class="product-price">
+            <span class="old">₡42,000</span>
+            ₡32,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.06480668317429063s">
+      <div class="product-img">
+        <div class="product-emoji">🖤</div>
+        <div class="product-category-tag">PERFUME</div>
+        
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(7)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(7)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Perfume Noir</div>
+        <div class="product-meta">
+          <div class="product-price">
+            
+            ₡35,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="product-card fade-in visible" style="animation-delay:0.054812149619371295s">
+      <div class="product-img">
+        <div class="product-emoji">✨</div>
+        <div class="product-category-tag">ACCESORIO</div>
+        <div class="product-badge new">Nuevo</div>
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(8)">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(8)">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">Aretes Dorados</div>
+        <div class="product-meta">
+          <div class="product-price">
+            
+            ₡12,000
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-banner fade-in visible" id="novedades">
+  <div class="banner-content">
+    <div class="banner-tag">Oferta Especial</div>
+    <h2 class="banner-title">Hasta <em>40%</em><br>de descuento</h2>
+    <p class="banner-desc">
+      Aprovecha nuestra temporada de rebajas en prendas seleccionadas. Calidad de primera, al mejor precio.
+    </p>
+    <a href="#catalogo" class="btn-primary"><span>Ver Ofertas</span></a>
+  </div>
+  <div class="banner-right">🛍️</div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="section-header fade-in visible">
+    <div>
+      <div class="section-label">Clientes</div>
+      <h2 class="section-title">Lo que dicen de nosotros</h2>
+    </div>
+  </div>
+  <div class="testimonials-grid fade-in visible">
+    <div class="testimonial-card">
+      <p class="testimonial-text">Los perfumes son increíbles, llegaron perfectamente empacados. La atención al cliente fue excelente. Sin duda volveré a comprar.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">M</div>
+        <div>
+          <div class="author-name">María Fernández</div>
+          <div class="author-location">San José, Costa Rica ⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Compré un vestido y quedó exactamente como en la foto. Calidad excelente y el envío fue muy rápido. Totalmente recomendado.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">A</div>
+        <div>
+          <div class="author-name">Andrea López</div>
+          <div class="author-location">Heredia, Costa Rica ⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Los zapatos que pedí son de muy buena calidad. Estoy muy satisfecha con mi compra, los accesorios también son hermosos.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">C</div>
+        <div>
+          <div class="author-name">Carolina Rivera</div>
+          <div class="author-location">Liberia, Costa Rica ⭐⭐⭐⭐⭐</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contacto">
+  <div class="contact-info-block fade-in visible">
+    <div class="section-label">Contacto</div>
+    <h2 class="section-title" style="margin-bottom:1.5rem;">Estamos para<br>ayudarte</h2>
+    <p class="contact-desc">
+      ¿Tienes preguntas sobre un producto, tu pedido o quieres asesoría de moda? Estamos disponibles para atenderte.
+    </p>
+
+    <div class="contact-item">
+      <div class="contact-icon">📱</div>
+      <div>
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value">+506 8888-0000</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📧</div>
+      <div>
+        <div class="contact-label">Correo Electrónico</div>
+        <div class="contact-value">info@evansline.com</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <div class="contact-label">Ubicación</div>
+        <div class="contact-value">Puntarenas, Costa Rica</div>
+      </div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <div class="contact-label">Horario</div>
+        <div class="contact-value">Lun–Sáb 8am–7pm</div>
+      </div>
+    </div>
+
+    <div class="social-links">
+      <a href="#" class="social-btn">📸 Instagram</a>
+      <a href="#" class="social-btn">💬 Facebook</a>
+      <a href="#" class="social-btn">🎵 TikTok</a>
+    </div>
+  </div>
+
+  <div class="fade-in visible">
+    <div class="section-label" style="margin-bottom:1.5rem;">Escríbenos</div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-input" placeholder="Tu nombre">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Apellido</label>
+          <input type="text" class="form-input" placeholder="Tu apellido">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-input" placeholder="tucorreo@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Teléfono / WhatsApp</label>
+        <input type="tel" class="form-input" placeholder="+506 ####-####">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoría de interés</label>
+        <select class="form-select">
+          <option value="">Selecciona una categoría</option>
+          <option>Zapatos</option>
+          <option>Vestimenta</option>
+          <option>Perfumería</option>
+          <option>Accesorios</option>
+          <option>Pedido personalizado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-textarea" placeholder="¿En qué te podemos ayudar?"></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm(this)">Enviar Mensaje</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Evans<span>_</span>Line</div>
+      <p class="footer-tagline">Tu destino de moda en Costa Rica. Calidad, estilo y elegancia en cada pieza.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#">Novedades</a></li>
+        <li><a href="#">Ofertas</a></li>
+        <li><a href="#">Colecciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="#contacto">Contacto</a></li>
+        <li><a href="#">Envíos</a></li>
+        <li><a href="#">Devoluciones</a></li>
+        <li><a href="#">Tallas</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Información</h4>
+      <ul>
+        <li><a href="#">Sobre Nosotros</a></li>
+        <li><a href="#">Privacidad</a></li>
+        <li><a href="#">Términos</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Evans_Line — Todos los derechos reservados</div>
+    <div class="footer-payments">
+      <span class="payment-badge">SINPE</span>
+      <span class="payment-badge">Transferencia</span>
+      <span class="payment-badge">Efectivo</span>
+    </div>
+  </div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-tag" id="modal-cat">Categoría</div>
+    <h3 class="modal-title" id="modal-name">Nombre del Producto</h3>
+    <div class="modal-price" id="modal-price">₡0</div>
+    <p class="modal-desc" id="modal-desc">Descripción del producto.</p>
+    <div class="size-options" id="modal-sizes"></div>
+    <div class="modal-actions">
+      <button class="modal-add" onclick="addFromModal()">Agregar al carrito</button>
+      <button class="modal-wish">🤍</button>
+    </div>
+  </div>
+</div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cart-panel">
+  <div class="cart-header">
+    <h3>Mi Carrito</h3>
+    <button onclick="toggleCart()" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--mid-gray);">✕</button>
+  </div>
+  <div class="cart-body" id="cart-body">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🛒</div>
+      <div>Tu carrito está vacío</div>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cart-total-amount">₡0</span>
+    </div>
+    <button class="cart-checkout" onclick="checkout()">Proceder al Pago</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-check">✓</span>
+  <span id="toast-msg">Producto agregado</span>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp-float" href="https://wa.me/50688880000?text=Hola%2C%20me%20interesa%20un%20producto%20de%20Evans_Line" target="_blank" title="Contáctanos por WhatsApp">💬</a>
+
+<script>
+// ─── DATA ───────────────────────────────
+const products = [
+  { id:1, name:"Tacones Dorados", cat:"zapatos", emoji:"👠", price:45000, oldPrice:null, badge:"new", desc:"Elegantes tacones dorados de alta calidad. Perfectos para ocasiones especiales. Material de primera.", sizes:["35","36","37","38","39","40"] },
+  { id:2, name:"Vestido Floral", cat:"vestimenta", emoji:"👗", price:38000, oldPrice:52000, badge:"sale", desc:"Hermoso vestido floral de tela ligera. Ideal para el verano costarricense. Disponible en tallas S-XL.", sizes:["XS","S","M","L","XL"] },
+  { id:3, name:"Eau de Parfum Rose", cat:"perfume", emoji:"🌹", price:28000, oldPrice:null, badge:"new", desc:"Fragancia floral intensa con notas de rosa, jazmín y almizcle. Duración 8-10 horas.", sizes:["30ml","50ml","100ml"] },
+  { id:4, name:"Collar de Perlas", cat:"accesorio", emoji:"📿", price:18000, oldPrice:25000, badge:"sale", desc:"Elegante collar de perlas sintéticas de alta calidad. Un clásico atemporal para cualquier outfit.", sizes:["Única"] },
+  { id:5, name:"Sneakers Blancas", cat:"zapatos", emoji:"👟", price:55000, oldPrice:null, badge:null, desc:"Zapatillas blancas urbanas de máximo confort. Suela antideslizante y material transpirable.", sizes:["35","36","37","38","39","40","41"] },
+  { id:6, name:"Blusa de Seda", cat:"vestimenta", emoji:"👚", price:32000, oldPrice:42000, badge:"sale", desc:"Elegante blusa de seda natural con acabado premium. Cae perfecto y es muy versátil.", sizes:["XS","S","M","L","XL"] },
+  { id:7, name:"Perfume Noir", cat:"perfume", emoji:"🖤", price:35000, oldPrice:null, badge:null, desc:"Fragancia oscura y seductora con notas de oud, madera de cedro y vainilla. Para el día y la noche.", sizes:["50ml","100ml"] },
+  { id:8, name:"Aretes Dorados", cat:"accesorio", emoji:"✨", price:12000, oldPrice:null, badge:"new", desc:"Aretes geométricos dorados de acero inoxidable chapado en oro 18k. Sin alergia.", sizes:["Única"] },
+];
+
+let cart = [];
+let currentProduct = null;
+let currentFilter = 'all';
+
+// ─── RENDER PRODUCTS ─────────────────────
+function renderProducts(filter = 'all') {
+  const grid = document.getElementById('products-grid');
+  const filtered = filter === 'all' ? products : products.filter(p => p.cat === filter);
+  grid.innerHTML = filtered.map(p => `
+    <div class="product-card fade-in" style="animation-delay:${Math.random()*0.3}s">
+      <div class="product-img">
+        <div class="product-emoji">${p.emoji}</div>
+        <div class="product-category-tag">${p.cat.toUpperCase()}</div>
+        ${p.badge ? `<div class="product-badge ${p.badge}">${p.badge === 'sale' ? 'Oferta' : 'Nuevo'}</div>` : ''}
+        <div class="product-overlay">
+          <button class="overlay-btn primary" onclick="openModal(${p.id})">Ver Detalles</button>
+          <button class="overlay-btn secondary" onclick="quickAdd(${p.id})">+ Agregar</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-name">${p.name}</div>
+        <div class="product-meta">
+          <div class="product-price">
+            ${p.oldPrice ? `<span class="old">₡${p.oldPrice.toLocaleString()}</span>` : ''}
+            ₡${p.price.toLocaleString()}
+          </div>
+          <div class="product-stars">★★★★★</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  observeFadeIns();
+}
+
+function filterProducts(cat) {
+  currentFilter = cat;
+  renderProducts(cat);
+  document.getElementById('catalogo').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── MODAL ───────────────────────────────
+function openModal(id) {
+  currentProduct = products.find(p => p.id === id);
+  document.getElementById('modal-cat').textContent = currentProduct.cat.charAt(0).toUpperCase() + currentProduct.cat.slice(1);
+  document.getElementById('modal-name').textContent = currentProduct.name;
+  document.getElementById('modal-price').textContent = '₡' + currentProduct.price.toLocaleString();
+  document.getElementById('modal-desc').textContent = currentProduct.desc;
+  const sizesEl = document.getElementById('modal-sizes');
+  sizesEl.innerHTML = currentProduct.sizes.map((s,i) =>
+    `<button class="size-btn ${i===0?'active':''}" onclick="selectSize(this)">${s}</button>`
+  ).join('');
+  document.getElementById('modal').classList.add('active');
+}
+
+function closeModal(e) {
+  if (!e || e.target.id === 'modal' || e.target.classList.contains('modal-close')) {
+    document.getElementById('modal').classList.remove('active');
+  }
+}
+
+function selectSize(btn) {
+  document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function addFromModal() {
+  if (!currentProduct) return;
+  const size = document.querySelector('.size-btn.active')?.textContent || 'Única';
+  addToCart(currentProduct, size);
+  closeModal();
+}
+
+function quickAdd(id) {
+  const p = products.find(pr => pr.id === id);
+  addToCart(p, p.sizes[0]);
+}
+
+// ─── CART ────────────────────────────────
+function addToCart(product, size) {
+  cart.push({ ...product, size, cartId: Date.now() });
+  renderCart();
+  showToast(`${product.name} agregado al carrito`);
+}
+
+function removeFromCart(cartId) {
+  cart = cart.filter(c => c.cartId !== cartId);
+  renderCart();
+}
+
+function renderCart() {
+  const body = document.getElementById('cart-body');
+  const footer = document.getElementById('cart-footer');
+  if (cart.length === 0) {
+    body.innerHTML = `<div class="cart-empty"><div class="cart-empty-icon">🛒</div><div>Tu carrito está vacío</div></div>`;
+    footer.style.display = 'none';
+    return;
+  }
+  body.innerHTML = cart.map(c => `
+    <div class="cart-item">
+      <div class="cart-item-img">${c.emoji}</div>
+      <div>
+        <div class="cart-item-name">${c.name}</div>
+        <div class="cart-item-size">Talla: ${c.size}</div>
+        <div class="cart-item-price">₡${c.price.toLocaleString()}</div>
+      </div>
+      <button class="cart-remove" onclick="removeFromCart(${c.cartId})">✕</button>
+    </div>
+  `).join('');
+  const total = cart.reduce((a, c) => a + c.price, 0);
+  document.getElementById('cart-total-amount').textContent = '₡' + total.toLocaleString();
+  footer.style.display = 'block';
+}
+
+function toggleCart() {
+  document.getElementById('cart-panel').classList.toggle('open');
+}
+
+function checkout() {
+  const total = cart.reduce((a,c) => a + c.price, 0);
+  const items = cart.map(c => `• ${c.name} (${c.size}) - ₡${c.price.toLocaleString()}`).join('\n');
+  const msg = encodeURIComponent(`¡Hola Evans_Line! Quiero realizar el siguiente pedido:\n\n${items}\n\nTotal: ₡${total.toLocaleString()}`);
+  window.open(`https://wa.me/50688880000?text=${msg}`, '_blank');
+}
+
+// ─── TOAST ───────────────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── FORM ────────────────────────────────
+function submitForm(btn) {
+  btn.textContent = '✓ Mensaje Enviado';
+  btn.style.background = '#2a7a4b';
+  setTimeout(() => {
+    btn.textContent = 'Enviar Mensaje';
+    btn.style.background = '';
+  }, 3000);
+  showToast('Mensaje enviado correctamente');
+}
+
+// ─── CURSOR ──────────────────────────────
+document.addEventListener('mousemove', e => {
+  const c = document.getElementById('cursor');
+  c.style.left = e.clientX - 5 + 'px';
+  c.style.top = e.clientY - 5 + 'px';
+});
+
+// ─── SCROLL ANIMATIONS ───────────────────
+function observeFadeIns() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+}
+
+// ─── NAVBAR SCROLL ───────────────────────
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  nav.style.padding = window.scrollY > 50 ? '1rem 4rem' : '1.5rem 4rem';
+});
+
+// ─── INIT ────────────────────────────────
+renderProducts();
+observeFadeIns();
+</script>
+
+</div></body></html>
